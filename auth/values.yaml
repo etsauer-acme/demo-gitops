@@ -1,0 +1,7 @@
+# Default values for auth chart
+github:
+  oauthOpenShiftId: ""  # GITHUB_OAUTH_OPENSHIFT_ID
+  clientSecret:
+    name: github-oauth
+  organizations:
+    - etsauer-acme

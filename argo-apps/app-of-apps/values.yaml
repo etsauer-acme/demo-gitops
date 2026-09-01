@@ -1,0 +1,6 @@
+repoURL: https://github.com/etsauer-acme/demo-gitops
+targetRevision: HEAD
+
+applications:
+  - name: auth
+    namespace: auth

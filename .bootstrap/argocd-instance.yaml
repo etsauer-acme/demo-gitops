@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1beta1
+kind: ArgoCD
+metadata:
+  name: openshift-gitops
+  namespace: openshift-gitops
+spec:
+  server:
+    autoscale:
+      enabled: false
+    insecure: false
+    grpc:
+      ingress:
+        enabled: false
+    ingress:
+      enabled: true
+      ingressClassName: openshift-default
+  rbac:
+    defaultPolicy: role:readonly
+    policy: |
+      g, system:cluster-admins, role:admin
+      g, system:authenticated, role:readonly
+    scopes: '[groups]'
+  controller:
+    processors: {}
+    sharding: {}
+  repo:
+    volumes: []
