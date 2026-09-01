@@ -8,4 +8,4 @@ applications:
       github:
         oauthOpenShiftId: 30662b469ae21c96c98b
         teams:
-          - etsauer-acme:aap-on-ocp
+          - etsauer-acme/aap-on-ocp
