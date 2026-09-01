@@ -5,6 +5,22 @@ metadata:
   name: cluster
 spec:
   identityProviders:
+  - mappingMethod: claim
+    name: rhbk
+    openID:
+      claims:
+        email:
+          - email
+        name:
+          - name
+        preferredUsername:
+          - preferred_username
+      clientID: idp-4-ocp
+      clientSecret:
+        name: openid-client-secret-bb6zw
+      extraScopes: []
+      issuer: https://sso.apps.cluster-fplhs.dyn.redhatworkshops.io/realms/sso
+    type: OpenID
   - name: github
     mappingMethod: claim 
     type: GitHub
