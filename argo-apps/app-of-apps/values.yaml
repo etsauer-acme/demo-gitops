@@ -5,4 +5,5 @@ applications:
   - name: auth
     namespace: auth
     values:
-      oauthOpenShiftId: 30662b469ae21c96c98b
+      github:
+        oauthOpenShiftId: 30662b469ae21c96c98b
