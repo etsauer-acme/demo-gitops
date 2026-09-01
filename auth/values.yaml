@@ -3,8 +3,6 @@ github:
   oauthOpenShiftId: ""  # GITHUB_OAUTH_OPENSHIFT_ID
   clientSecret:
     name: github-oauth
-  organizations:
-    - etsauer-acme
   teams:
     # Format: <org>:<team-slug>
     # Example: etsauer-acme:admin-team

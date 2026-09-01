@@ -28,10 +28,6 @@ spec:
       clientID: {{ .Values.github.oauthOpenShiftId }}
       clientSecret: 
         name: {{ .Values.github.clientSecret.name }}
-      organizations: 
-      {{- range .Values.github.organizations }}
-      - {{ . }}
-      {{- end }}
       teams:
       {{- range .Values.github.teams }}
       - {{ . }}
