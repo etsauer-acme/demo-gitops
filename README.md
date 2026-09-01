@@ -10,6 +10,8 @@ This repo represents a GitOps configuration for an OpenShift cluster (v4.22+) us
 
 ## Setup
 
+### 0. Set up bootstrap secret
+
 ### 1. Install ArgoCD Operator
 
 Apply the bootstrap manifests to install the Red Hat ArgoCD operator:

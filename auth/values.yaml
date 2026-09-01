@@ -5,3 +5,8 @@ github:
     name: github-oauth
   organizations:
     - etsauer-acme
+  teams:
+    # Format: <org>:<team-slug>
+    # Example: etsauer-acme:admin-team
+    # This enables group-based authorization via RoleBindings
+    # - etsauer-acme:admin-team
