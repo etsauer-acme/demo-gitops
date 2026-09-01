@@ -1,27 +1,73 @@
 # Demo Cluster GitOps
 
-This repo represents a simple GitOps configuration for a new demo OpenShift cluster (currently v4.22), intended for a small team to use to collaborate on experiments. It provides the following config:
+This repo represents a GitOps configuration for an OpenShift cluster (v4.22+) using ArgoCD with an app-of-apps pattern.
 
-- A GitHub Oauth identity provider
-- an OpenShift Dev Spaces deployment
+## Structure
 
-1. Provision a new cluster in the product demo system
-1. Create a GitHub Oauth App for DevSpaces, and export the client id and secret to your environment.
-    ```bash
-    export GITHUB_OAUTH_CLIENT_ID=<client id>
-    export GITHUB_OAUTH_CLIENT_SECRET=<client secret>
-    ```
-1. Create a GitHub Oauth App for OpenShift login, and export the client id and secret to your environment.
-    ```bash
-    export GITHUB_OAUTH_OPENSHIFT=<client secret>
-    ```
-1. Apply configs to install Dev Spaces and Pelorus
+- `.bootstrap/` - Bootstrap manifests for installing ArgoCD and initial configuration
+- `auth/` - Helm chart for GitHub OAuth identity provider configuration
+- `argo-apps/` - App-of-apps pattern for managing all ArgoCD applications
+
+## Setup
+
+### 1. Install ArgoCD Operator
+
+Apply the bootstrap manifests to install the Red Hat ArgoCD operator:
+
 ```bash
-envsubst < .bootstrap/github-oauth-openshift.yaml | oc apply -f -
-oc apply -f .bootstrap/argocd-*.yaml
+oc apply -f .bootstrap/argocd-namespace.yaml
+oc apply -f .bootstrap/argocd-operatorgroup.yaml
+oc apply -f .bootstrap/argocd-subscription.yaml
+# Wait for operator to be ready
+oc apply -f .bootstrap/argocd-instance.yaml
 ```
 
+### 2. Deploy the App-of-Apps
 
+```bash
+oc apply -f argo-apps/app-of-apps.yaml
 ```
-helm install auth ./auth -f values.yaml --set github.oauthOpenShiftId=<your-id>
+
+## Testing & Rendering Templates
+
+### Render Auth Chart
+
+To test the auth Helm chart locally:
+
+```bash
+helm template auth ./auth
+```
+
+With custom values:
+
+```bash
+helm template auth ./auth --set github.oauthOpenShiftId=<your-oauth-id>
+```
+
+### Render App-of-Apps Chart
+
+To render all child applications managed by the app-of-apps:
+
+```bash
+helm template app-of-apps ./argo-apps/app-of-apps
+```
+
+This will output all the Application resources that will be created.
+
+To test with custom values:
+
+```bash
+helm template app-of-apps ./argo-apps/app-of-apps -f ./argo-apps/app-of-apps/values.yaml
+```
+
+### Render All YAML for Deployment
+
+To see everything that will be deployed:
+
+```bash
+# All bootstrap manifests
+cat .bootstrap/*.yaml
+
+# App-of-apps and all child applications
+helm template app-of-apps ./argo-apps/app-of-apps
 ```

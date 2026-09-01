@@ -13,6 +13,10 @@ spec:
     path: {{ .name }}
     helm:
       releaseName: {{ .name }}
+      {{- if .values }}
+      values: |
+        {{- toYaml .values | nindent 8 }}
+      {{- end }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .namespace }}
