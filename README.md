@@ -6,6 +6,7 @@ This repo represents a GitOps configuration for an OpenShift cluster (v4.22+) us
 
 - `.bootstrap/` - Bootstrap manifests for installing ArgoCD and initial configuration
 - `auth/` - Helm chart for GitHub OAuth identity provider configuration
+- `rbac/` - Helm chart for cluster role bindings
 - `argo-apps/` - App-of-apps pattern for managing all ArgoCD applications
 
 ## Setup
@@ -44,6 +45,14 @@ With custom values:
 
 ```bash
 helm template auth ./auth --set github.oauthOpenShiftId=<your-oauth-id>
+```
+
+### Render RBAC Chart
+
+To test the RBAC Helm chart locally:
+
+```bash
+helm template rbac ./rbac
 ```
 
 ### Render App-of-Apps Chart
