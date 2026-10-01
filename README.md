@@ -11,6 +11,7 @@ This repo represents a GitOps configuration for an OpenShift cluster (v4.22+) us
 - `terraform/` - HCP Terraform deployment roots (migrated from `zisom-hc/terraform-vault-vault-platform-*-deployment`), applied through the `team-rts-fiserv` org:
   - `terraform/vault-platform-admin/` - workspace `vault-platform-admin`: cluster-level Vault platform objects (namespaces, root policies, auth backends, per-APM namespace onboarding) on `uhit-dev-vault`
   - `terraform/vault-platform-user-uhit-dev/` - workspace `vault-platform-user-uhit-dev`: per-APM namespace `admin/uhit-dev` objects (KV secrets, AppRole/JWT/SSH/PKI roles, k8s workload onboarding); each input folder has its own `README.md` describing its YAML schema
+  - `terraform/aap-platform-user-uhit-dev/` - workspace `aap-platform-user-uhit-dev`: the `uhit-dev` AAP organization (projects, inventories, credentials, teams, job templates); migrated from `terraform-aap-platform-user-iim` with IIM-specific objects removed
 
 ## Setup
 
