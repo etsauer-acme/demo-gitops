@@ -1,0 +1,10 @@
+# Trusts HCP Terraform (app.terraform.io) workload identity tokens. Every uhit-dev workspace
+# (this one included) logs in here via Dynamic Provider Credentials - TFC_VAULT_AUTH_PATH=jwt/tfe.
+tfe-jwt:
+  path: "jwt/tfe"
+  description: "JWT auth backend trusting HCP Terraform (app.terraform.io) workload identity"
+  oidc_discovery_url: "https://app.terraform.io"
+  bound_issuer: "https://app.terraform.io"
+  tune:
+    default_lease_ttl: "20m"
+    max_lease_ttl: "1h"

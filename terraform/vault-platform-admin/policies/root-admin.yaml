@@ -1,0 +1,7 @@
+# vault-platform-admin's own policy: everything under the HCP Vault "admin" namespace and its
+# children. HCP Vault Dedicated never exposes the real root namespace, so this is the ceiling.
+root-admin:
+  policy: |
+    path "*" {
+      capabilities = ["create", "read", "update", "delete", "list", "sudo"]
+    }

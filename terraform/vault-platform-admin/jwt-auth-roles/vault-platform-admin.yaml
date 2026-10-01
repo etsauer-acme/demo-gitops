@@ -1,0 +1,16 @@
+# This workspace's own identity. TFC_VAULT_RUN_ROLE=vault-platform-admin on the workspace.
+vault-platform-admin:
+  backend: "jwt/tfe"
+  role_name: "vault-platform-admin"
+  role_type: "jwt"
+  user_claim: "terraform_full_workspace"
+  bound_audiences:
+    - "vault.workload.identity"
+  bound_claims:
+    terraform_organization_name: "team-rts-fiserv"
+    terraform_project_name: "uhit-dev"
+    terraform_workspace_name: "vault-platform-admin"
+  token_ttl: 1200
+  token_max_ttl: 3600
+  token_policies:
+    - "root-admin"

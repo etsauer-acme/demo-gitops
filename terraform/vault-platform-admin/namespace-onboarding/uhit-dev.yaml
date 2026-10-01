@@ -1,0 +1,8 @@
+# Creates admin/uhit-dev (KVv2 at secret/, AppRole at approle/, baseline policies) and the
+# uhit-dev-workspace-identity-vault role on jwt/tfe for the vault-platform-user-uhit-dev workspace.
+uhit-dev:
+  apm: "uhit-dev"
+  description: "uhit-dev Vault platform user namespace"
+  tfe_organization: "team-rts-fiserv"
+  tfe_project: "uhit-dev"
+  tfe_workspace_name: "vault-platform-user-uhit-dev"
